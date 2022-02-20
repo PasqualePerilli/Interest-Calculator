@@ -15,7 +15,7 @@ The initial project had:
 With this project, the goal was for the calculator to:
 
  - Work properly;
- - Look identical to the example images;
+ - Look identical to the sample images;
 
 To accomplish this goal, modifications were made to HTML, CSS and JavaScript files.
 
@@ -31,61 +31,66 @@ No information was given about the dimensions of the white "container". As one c
 
 ### 4.1 Sample initial page
 
-![Sample initial page](ibm1.png)
+![Sample initial screen](ibm1.png)
 
+*Figure 1 - Initial screen of the IBM project*
 
-### 4.2 Sample computation page
+### 4.2 Sample computation screen
 
-![Sample computation page](ibm2.png)
+![Sample computation screen](ibm2.png)
 
-### 4.3 Coded initial page
+*Figure 2 - Computation screen of the IBM project*
 
-![Coded initial page](pasquale1.png)
+### 4.3 Coded initial screen
 
-### 4.4 Coded computation page
+![Coded initial screen](pasquale1.png)
 
-![Coded computation page](pasquale2.png)
+*Figure 3 - Initial screen of my project*
+
+### 4.4 Coded computation screen
+
+![Coded computation screen](pasquale2.png)
+
+*Figure 4 - Computation screen of my project*
+
+### 4.5 No principal amount screen
+
+![Coded error no principal screen](pasquale3.png)
+
+*Figure 5 - Error screen with no principal amount specified of my project*
+
+### 4.6 Principal equal to zero screen
+
+![Coded error zero principal screen](pasquale4.png)
+
+*Figure 6 - Error screen with a zero principal amount specified*
+
+### 4.7 Principal less than zero screen
+
+![Coded error less than zero principal screen](pasquale5.png)
+
+*Figure 7 - Error screen with a less-than-zero principal amount specified*
 
 ## 5. Differences
 
-### 5.1 Validation logic
-
-The form includes three input fields: a numeric one for the amount, a slider for the interest rate and a dropdown for the amount of years.
-
-Although the latter two have to always have a value, the former can technically be empty when the "Compute Interest" button is pressed. 
-In those circumstances, given that a value is completely missing, it is meaningless to attempt to calculate the interest. 
-As such, a validation logic was introduced: when all fields are filled, then the message will show the resulting interest; when one is missing (amount), an error message will be displayed instead, prompting the user to fill in all input values.
-
-A screenshot of the above-mentioned error message is displayed below:
-
-![Coded error page](pasquale3.png)
-
-### 5.2 Currency and rounding
+### 5.1 Currency and rounding
 
 The example image provided in §4.2 does not show whether the "Everyone Can Get Rich" organization wants to show the decimal places (and how many of them).
 I took the liberty of setting that to 2. I also introduced, in currency.js, a valid mechanism for rounding currency amounts, as there are certain instances where the .toFixed(2) of JavaScript was producing wrong results.
 
-### 5.3 Default values
+### 5.2 Default values
 
 The requirements do not specify what the default values should be when the page loads, so I took what was shown in the example image at §4.1 and set those as default values.
 
-### 5.4 Interest rate
+### 5.3 Interest rate
 
-The requirements do not specify what the maximum interest rate is, nor what the "step" is. Looking at the screenshot, the 10.50% value seemed to be slightly left of halfway. As such, I guessed that the slider's max value in the provided image was 25 and set my code accordingly.
+The requirements do not specify what the "step" is for the interest rate. As such, I opted for 0.1.
 
 I also noticed that between §4.1 and §4.2, the percentage value of the slider goes from having 2 decimal places (10.50%) to just one (3.5%). I replicated this as well in my code with one caveat: the initial value set for the slider and displayed on page has the trailing zero, while, as soon as the slider changes, it stops displaying the trailing zero (including for 10.50%).
 
-### 5.5 Number of years
-
-The requirements do not specify what the maximum number of years should be, nor the minimum. As such, I opted for 1 as a minimum and 20 as a maximum.
-
-### 5.6 Result message
+### 5.4 Result message
 
 The requirements do not specify what happens to the result message when the values of amount, interest rate or number of years are changed. To avoid confusion, I added to my JavaScript code a mechanism that detects when any of the three changes and hides (sets the display css property to none) the result message. Only after clicking again on the button, the message is displayed. This makes the page more responsive and dynamic.
-
-### 5.7 Error message
-
-The error message also follows the same logic as the result message: if the error message is being displayed and any of the three values changes, the error message is no longer displayed.
 
 ## 6. Versioning
 

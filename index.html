@@ -1,16 +1,78 @@
 <html>
     <head>
     <script src="script.js"></script>
+    <script src="troubleshooting.js"></script>
+    <script src="currency.js"></script>
     <link rel="stylesheet" href="style.css">
+    <title>Web App - Simple Interest Calculator</title>
     </head>
     <body>
-        <h1>Simple Interest Calculator</h1>
+        <div id="container">
+          <h1>Simple Interest Calculator</h1>
+          <table>
+            <tr>
+              <td>
+                <label for="principal">Amount</label>
+              </td>
+              <td>
+                <input type="number" id="principal" min="0" onchange="hideErrorMessage();hideResult();" value="">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="rate">Interest Rate</label>
+              </td>
+              <td>
+                <input id="rate" type="range" min="0" max="25" step="0.1" value="10.5" onchange="hideErrorMessage();hideResult();displayRate(this.value);" oninput="displayRate(this.value);">
+                <span id="interest">10.50%</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="interest">No. of Years</label>
+              </td>
+              <td>
+                <select id="years" name="years" onchange="hideErrorMessage();hideResult();">
+                  <option value="1" selected="selected">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                </select>
+            </td>
+            <tr>
+              <td>
+                <button id="computeButton" onclick="compute();">Compute Interest</button>
+              </td>
+              <td>
+              </td>
+            </tr>
+          </tr>
+      </table>
+      <div id="result-text">
+        If you deposit <span id="initialAmount" class="highlighted"></span>,<br/>
+        at an interest rate of <span id="percentage" class="highlighted"></span>.<br/>
+        You will receive an amount of <span id="finalYeild" class="highlighted"></span>,<br/>
+        in the year <span id="finalYear" class="highlighted"></span>
+      </div>
+      <div id="error-message">One of the input values is invalid. Interest cannot be computed at this time.</div>
+      <span id="trademark">© Everyone Can Get Rich</span>
+    </div>
 
-        Amount <input type="number"  id="principal">  <br/>
-        Rate <input type="number"  id="rate">  <br/>
-        No. of Years <input type="number"  id="years">  <br/>
-        Interest : <span id="result"></span><br>
-
-        <button onclick="compute()">Compute</button>
     </body>
 </html>

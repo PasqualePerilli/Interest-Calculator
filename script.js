@@ -1,3 +1,8 @@
+let genericErrorMessage = "One of the input values is invalid. Interest cannot be computed at this time.";
+let zeroAmountErrorMessage = "The starting amount cannot be zero. Interest cannot be computed at this time.";
+let negativeAmountErrorMessage = "The starting amount cannot be less than zero. Interest cannot be computed at this time";
+var errorMessage = "";
+
 function compute(){
     var amount        = document.getElementById("principal").value;
     var interest      = document.getElementById("rate").value;
@@ -13,7 +18,6 @@ function compute(){
         //debug("Current amount at year " + currentYear + " is " + currentAmount);
       }
       var finalYear = new Date().getFullYear() + parseInt(years);
-      //TODO perform data validation and show error message if needed
       showResult(amount, interest, finalYear, currentAmount);
       hideErrorMessage();
     }
@@ -32,18 +36,36 @@ function hideErrorMessage(){
 }
 
 function showErrorMessage(){
+  document.getElementById("error-message").innerHTML = errorMessage;
   document.getElementById("error-message").style.display = "block";
 }
 
 function validateData(amount, interest, years, currentAmount){
   var valueToReturn = true;
-  if(amount         === null || String(amount)        == ""  || isNaN(amount)        == true  || parseInt(amount) == 0 ||
-     interest       === null || String(interest)      == ""  || isNaN(interest)      == true  ||
-     years          === null || String(years)         == ""  || isNaN(years)         == true  ||
-     currentAmount  === null || String(currentAmount) == ""  || isNaN(currentAmount) == true) {
-
-       valueToReturn = false;
-
+  errorMessage = "";
+  if(amount === null || String(amount) == "" || isNaN(amount) == true){
+    errorMessage = genericErrorMessage;
+    valueToReturn = false;
+  }
+  else if(parseInt(amount) == 0){
+    errorMessage = zeroAmountErrorMessage;
+    valueToReturn = false;
+  }
+  else if(parseInt(amount) < 0){
+    errorMessage = negativeAmountErrorMessage;
+    valueToReturn = false;
+  }
+  else if(interest === null || String(interest) == "" || isNaN(interest) == true){
+    errorMessage = genericErrorMessage;
+    valueToReturn = false;
+  }
+  else if(years === null || String(years) == "" || isNaN(years) == true){
+    errorMessage = genericErrorMessage;
+    valueToReturn = false;
+  }
+  else if(currentAmount  === null || String(currentAmount) == "" || isNaN(currentAmount) == true){
+    errorMessage = genericErrorMessage;
+    valueToReturn = false;
   }
   return valueToReturn;
 }

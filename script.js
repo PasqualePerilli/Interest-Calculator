@@ -1,6 +1,6 @@
-let genericErrorMessage = "One of the input values is invalid. Interest cannot be computed at this time.";
-let zeroAmountErrorMessage = "The starting amount cannot be zero. Interest cannot be computed at this time.";
-let negativeAmountErrorMessage = "The starting amount cannot be less than zero. Interest cannot be computed at this time";
+let genericErrorMessage = "The starting principal amount has to be a positive number. Interest cannot be computed at this time.";
+let zeroAmountErrorMessage = "The starting principal amount cannot be zero. Please enter a positive number. Interest cannot be computed at this time.";
+let negativeAmountErrorMessage = "The starting principal amount cannot be less than zero. Please enter a positive number. Interest cannot be computed at this time";
 var errorMessage = "";
 
 function compute(){
@@ -36,8 +36,10 @@ function hideErrorMessage(){
 }
 
 function showErrorMessage(){
-  document.getElementById("error-message").innerHTML = errorMessage;
-  document.getElementById("error-message").style.display = "block";
+  //document.getElementById("error-message").innerHTML = errorMessage;
+  //document.getElementById("error-message").style.display = "block";
+  alert(errorMessage);
+  document.getElementById("principal").focus();
 }
 
 function validateData(amount, interest, years, currentAmount){
@@ -53,18 +55,6 @@ function validateData(amount, interest, years, currentAmount){
   }
   else if(parseInt(amount) < 0){
     errorMessage = negativeAmountErrorMessage;
-    valueToReturn = false;
-  }
-  else if(interest === null || String(interest) == "" || isNaN(interest) == true){
-    errorMessage = genericErrorMessage;
-    valueToReturn = false;
-  }
-  else if(years === null || String(years) == "" || isNaN(years) == true){
-    errorMessage = genericErrorMessage;
-    valueToReturn = false;
-  }
-  else if(currentAmount  === null || String(currentAmount) == "" || isNaN(currentAmount) == true){
-    errorMessage = genericErrorMessage;
     valueToReturn = false;
   }
   return valueToReturn;

@@ -37,7 +37,7 @@ function showErrorMessage(){
 
 function validateData(amount, interest, years, currentAmount){
   var valueToReturn = true;
-  if(amount         === null || String(amount)        == ""  || isNaN(amount)        == true  ||
+  if(amount         === null || String(amount)        == ""  || isNaN(amount)        == true  || parseInt(amount) == 0 ||
      interest       === null || String(interest)      == ""  || isNaN(interest)      == true  ||
      years          === null || String(years)         == ""  || isNaN(years)         == true  ||
      currentAmount  === null || String(currentAmount) == ""  || isNaN(currentAmount) == true) {
